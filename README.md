@@ -1,5 +1,5 @@
 <div align="center">
-	<img alt="Vaccine Appointment Finder icon" src="images/logo-256.png" width="200" height="200">
+	<img alt="Vaccine Appointment Finder icon" src="images/logo-256.png" width="200" height="200" />
 	<h1>💉 BC COVID-19 Vaccine Appointment Finder</h1>
 	<p>
 		<b>Find a vaccine appointment in British Columbia near you.</b>
@@ -12,6 +12,10 @@
 To find a vaccine appointment in British Columbia, and especially if you have one booked - requires canceling the existing one. Not the most optimal approach if you are worried about losing your spot in line.
 
 This tool allows finding all available vaccine appointments in a specified city in BC without canceling the existing time slot. I wrote about this in detail [in my blog post](https://den.dev/blog/vaccine/).
+
+<div align="center">
+	<img alt="Demo of the Vaccine Appointment Finder" src="images/vac-demo.gif" width="800">
+</div>
 
 ## Running
 
