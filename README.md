@@ -1,4 +1,4 @@
-![Vaccine Appointment Finder Logo](images/logo.png)
+![Vaccine Appointment Finder Logo](images/logo-256.png)
 
 # 💉 BC COVID-19 Vaccine Appointment Finder
 
