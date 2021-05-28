@@ -3,11 +3,27 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>vacfind</AssemblyName>
+    <ApplicationIcon>VaccineAppointmentFinder.ico</ApplicationIcon>
+    <PackageId>vacfind</PackageId>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
+    <Authors>Den Delimarsky</Authors>
+    <Version>0.0.1</Version>
+    <Product>BC COVID-19 Vaccination Appointment Finder</Product>
+    <PackageProjectUrl>https://github.com/dend/vaccine-appointment-finder</PackageProjectUrl>
+    <PackageIcon>logo-256.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/dend/vaccine-appointment-finder</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Update="tokens.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\images\logo-256.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 
