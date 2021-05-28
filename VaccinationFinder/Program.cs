@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using VaccinationFinder.Helpers;
 
 namespace VaccinationFinder
 {
@@ -8,43 +9,66 @@ namespace VaccinationFinder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("BC Vaccine Finder");
-            MainAsync().Wait();
+            Console.WriteLine("BC Vaccine Finder - Unofficial Tool");
+            try
+            {
+                MainAsync().Wait();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR] There was an error launching. Details: " + ex.Message);
+            }
         }
 
         static async Task MainAsync()
         {
-            var region = "Vancouver";
-            BCVaccinationAPIHelper helper = new BCVaccinationAPIHelper();
-            Console.WriteLine($"Looking for facilities in the specified region: {region}");
+            var token = SystemHelper.GetTokens();
 
-            var facilities = await helper.GetFacilities(region);
-            foreach (var facility in facilities.actions.First().Facilities.FacilityCollection)
+            if (token != null)
             {
-                Console.WriteLine($"[{facility.Name}] ({facility.DDH__HC_Primary_Address_1__c})");
+                var region = "Vancouver";
+                BCVaccinationAPIHelper helper = new BCVaccinationAPIHelper();
+                Console.WriteLine($"[INFO] Looking for facilities in the specified region: {region}");
 
-                var facilityAppointments = await helper.GetFacilityDays(facility.Id);
-                if (facilityAppointments.actions.First().Appointments.VaccinationFacilityAppointments != null &&
-                    facilityAppointments.actions.First().Appointments.VaccinationFacilityAppointments.Length > 0)
+                var facilities = await helper.GetFacilities(region, token);
+
+                if (facilities != null)
                 {
-                    Console.WriteLine("For this facility, the following days are available this month:");
-                    foreach (var day in facilityAppointments.actions.First().Appointments.VaccinationFacilityAppointments)
+                    foreach (var facility in facilities.Entities.First().Facilities.FacilityCollection)
                     {
-                        Console.WriteLine(day.DDH__HC_Appointments_Date__c);
+                        Console.WriteLine($"[{facility.Name}] ({facility.Address})");
 
-                        var timeBlocks = await helper.GetTimeBlocks(day.Id, facility.Id);
-                        foreach(var timeBlock in timeBlocks.actions.First().AppointmentBlockCollection.AppointmentBlocks)
+                        var facilityAppointments = await helper.GetFacilityDays(facility.Id, token);
+                        if (facilityAppointments.Entities.First().Appointments.VaccinationFacilityAppointments != null &&
+                            facilityAppointments.Entities.First().Appointments.VaccinationFacilityAppointments.Count > 0)
                         {
-                            var timeSpan = TimeSpan.FromMilliseconds(timeBlock.DDH__HC_Start_Time__c);
-                            Console.Write($"{timeSpan.Hours}:{timeSpan.Minutes} ");
+                            foreach (var day in facilityAppointments.Entities.First().Appointments.VaccinationFacilityAppointments)
+                            {
+                                Console.WriteLine("\x1b[4m\u001b[36m" + day.AppointmentDate + "\u001b[0m\x1b[0m");
+
+                                var timeBlocks = await helper.GetTimeBlocks(day.Id, facility.Id, token);
+                                foreach (var timeBlock in timeBlocks.Entities.First().AppointmentBlockCollection.AppointmentBlocks)
+                                {
+                                    var timeSpan = TimeSpan.FromMilliseconds(timeBlock.StartTime);
+                                    Console.Write($"{timeSpan.Hours + ":" + timeSpan.Minutes.ToString("D2"),-10}");
+                                }
+                                Console.WriteLine();
+                            }
                         }
-                        Console.WriteLine();
+                        else
+                        {
+                            Console.WriteLine("\u001b[33m[WARN]\u001b[0m No appointments available at this facility for the current period.");
+                        }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("[!] No appointments available at this facility for current month.");
+                    Console.WriteLine("\u001b[30m[ERROR]\u001b[0m No facilities returned from the API.");
                 }
+            }
+            else
+            {
+                Console.WriteLine("\u001b[30m[ERROR]\u001b[0m Could not read the token file.");
             }
             Console.ReadKey();
         }
