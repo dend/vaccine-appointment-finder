@@ -2,6 +2,19 @@
 
 To find a vaccine appointment in BC if you have one booked requires canceling the existing one. This tool allows finding all available vaccine appointments in a specified city in BC without canceling the existing time slot. I wrote about this in detail [in my blog post](https://den.dev/blog/vaccine/).
 
+## Running
+
+To run the application, you will need to create a `tokens.json` file in the project folder, that matches the following content:
+
+```json
+{
+	"fwuid": "YOUR_FWUID_HERE",
+	"appid": "YOUR_APPID_HERE"
+}
+```
+
+You can get both values when you navigate to `https://www.getvaccinated.gov.bc.ca/s/booking`, and looking at the traffic through the network inspector in your favorite web browser. Look for `aura.context` form data in a POST request.
+
 ## FAQ
 
 ### Does this tool allow me to pick which vaccine I will get?
