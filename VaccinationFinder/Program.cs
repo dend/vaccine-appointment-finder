@@ -12,6 +12,7 @@ namespace VaccinationFinder
         static int Main(string[] args)
         {
             Console.WriteLine("BC Vaccine Finder - Unofficial Tool");
+            Console.WriteLine("Created by Den Delimarsky (https://den.dev)");
 
             var rootCommand = new RootCommand();
             rootCommand.AddOption(new Option<string>(
