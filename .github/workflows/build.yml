@@ -2,19 +2,16 @@ name: "Build"
 
 on:
   pull_request:
-    branches: [main, experimental]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
   push:
-    branches: [main, experimental]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
   workflow_dispatch:
-    branches: [main, experimental]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
