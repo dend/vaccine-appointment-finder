@@ -16,6 +16,7 @@ This tool allows finding all available vaccine appointments in a specified city 
 <div align="center">
 	<img alt="Demo of the Vaccine Appointment Finder" src="images/vac-demo.gif" width="800">
 </div>
+
 ## Building
 
 Prerequisite: `dotnet` should be installed on your machine (see https://aka.ms/net for details on how to aquire and install the tools).
