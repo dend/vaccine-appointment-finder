@@ -8,6 +8,10 @@ namespace VaccinationFinder
 {
     public class BCVaccinationAPIHelper
     {
+        private readonly string MessageKey = "message";
+        private readonly string ContextKey = "aura.context";
+        private readonly string TokenKey = "aura.token";
+
         private readonly string? VaccinationUrl = "https://www.getvaccinated.gov.bc.ca/s/sfsites/aura?r=11&aura.ApexAction.execute=1";
         private readonly string FacilityMessage = "{{\"actions\":[{{\"id\":\"147;a\",\"descriptor\":\"aura://ApexActionController/ACTION$execute\",\"callingDescriptor\":\"UNKNOWN\",\"params\":{{\"namespace\":\"\",\"classname\":\"BCH_SchedulerController\",\"method\":\"getFacilities\",\"params\":{{\"territory\":\"{0}\",\"priorityCode\":\"\"}},\"cacheable\":true,\"isContinuation\":false}}}}]}}";
         private readonly string SpecificFacilityMessage = "{{\"actions\":[{{\"id\":\"149;a\",\"descriptor\":\"aura://ApexActionController/ACTION$execute\",\"callingDescriptor\":\"UNKNOWN\",\"params\":{{\"namespace\":\"\",\"classname\":\"BCH_SchedulerController\",\"method\":\"getAppointmentDays\",\"params\":{{\"facility\":\"{0}\",\"appointmentType\":\"COVID-19 Vaccination\"}},\"cacheable\":true,\"isContinuation\":false}}}}]}}";
@@ -19,9 +23,9 @@ namespace VaccinationFinder
         {
             List<KeyValuePair<string, string>> _requestValues = new()
             {
-                new KeyValuePair<string, string>("message", string.Format(FacilityMessage, region)),
-                new KeyValuePair<string, string>("aura.context", string.Format(AuraContext, token.FwuId, token.AppId)),
-                new KeyValuePair<string, string>("aura.token", AuraToken)
+                new KeyValuePair<string, string>(MessageKey, string.Format(FacilityMessage, region)),
+                new KeyValuePair<string, string>(ContextKey, string.Format(AuraContext, token.FwuId, token.AppId)),
+                new KeyValuePair<string, string>(TokenKey, AuraToken)
             };
 
             return await SendRequest<AuthoritativeFacilityList>(_requestValues);
@@ -31,9 +35,9 @@ namespace VaccinationFinder
         {
             List<KeyValuePair<string, string>> _requestValues = new()
             {
-                new KeyValuePair<string, string>("message", string.Format(SpecificFacilityMessage, facilityId)),
-                new KeyValuePair<string, string>("aura.context", string.Format(AuraContext, token.FwuId, token.AppId)),
-                new KeyValuePair<string, string>("aura.token", AuraToken)
+                new KeyValuePair<string, string>(MessageKey, string.Format(SpecificFacilityMessage, facilityId)),
+                new KeyValuePair<string, string>(ContextKey, string.Format(AuraContext, token.FwuId, token.AppId)),
+                new KeyValuePair<string, string>(TokenKey, AuraToken)
             };
 
             return await SendRequest<AuthoritativeVaccinationFacility>(_requestValues);
@@ -43,9 +47,9 @@ namespace VaccinationFinder
         {
             List<KeyValuePair<string, string>> _requestValues = new()
             {
-                new KeyValuePair<string, string>("message", string.Format(AppointmentBlockMessage, dayId, facility)),
-                new KeyValuePair<string, string>("aura.context", string.Format(AuraContext, token.FwuId, token.AppId)),
-                new KeyValuePair<string, string>("aura.token", AuraToken)
+                new KeyValuePair<string, string>(MessageKey, string.Format(AppointmentBlockMessage, dayId, facility)),
+                new KeyValuePair<string, string>(ContextKey, string.Format(AuraContext, token.FwuId, token.AppId)),
+                new KeyValuePair<string, string>(TokenKey, AuraToken)
             };
 
             return await SendRequest<VaccinationBlock>(_requestValues);
