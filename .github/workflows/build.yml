@@ -53,7 +53,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: foggycam-${{ matrix.os }}
+        name: foggycam-${{ matrix.os }}.zip
         path: finalbuild-${{ matrix.os }}
     
     - name: Release
