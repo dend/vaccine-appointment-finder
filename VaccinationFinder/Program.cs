@@ -1,4 +1,6 @@
 ﻿using System;
+using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.Linq;
 using System.Threading.Tasks;
 using VaccinationFinder.Helpers;
@@ -7,30 +9,53 @@ namespace VaccinationFinder
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             Console.WriteLine("BC Vaccine Finder - Unofficial Tool");
-            try
+
+            var rootCommand = new RootCommand();
+            rootCommand.AddOption(new Option<string>(
+                   aliases: new[] { "--city", "-c" },
+                   getDefaultValue: () => string.Empty,
+                   description: "Determines the location for which appointment data should be obtained.")
             {
-                MainAsync().Wait();
+                IsRequired = true,
+                AllowMultipleArgumentsPerToken = false
+            });
+
+            rootCommand.Handler = CommandHandler.Create<string>(HandleCommandLineArguments);
+            return rootCommand.InvokeAsync(args).Result;
+        }
+
+        private static void HandleCommandLineArguments(string city)
+        {
+            if (!string.IsNullOrWhiteSpace(city))
+            {
+                try
+                {
+                    GetAppointmentDetails(city).Wait();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("[ERROR] There was an error launching. Details: " + ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine("[ERROR] There was an error launching. Details: " + ex.Message);
+                Console.WriteLine("[ERROR] No city was specified.");
             }
         }
 
-        static async Task MainAsync()
+        static async Task GetAppointmentDetails(string city)
         {
             var token = SystemHelper.GetTokens();
 
             if (token != null)
             {
-                var region = "Vancouver";
-                BCVaccinationAPIHelper helper = new BCVaccinationAPIHelper();
-                Console.WriteLine($"[INFO] Looking for facilities in the specified region: {region}");
+                BCVaccinationAPIHelper helper = new();
+                Console.WriteLine($"[INFO] Looking for facilities in the specified city: {city}");
 
-                var facilities = await helper.GetFacilities(region, token);
+                var facilities = await helper.GetFacilities(city, token);
 
                 if (facilities != null)
                 {

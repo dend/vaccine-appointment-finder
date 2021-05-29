@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "VaccinationFinder": {
+      "commandName": "Project",
+      "commandLineArgs": "--city Vancouver"
+    }
+  }
+}
