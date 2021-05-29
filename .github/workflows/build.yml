@@ -55,17 +55,21 @@ jobs:
       with:
         name: foggycam-${{ matrix.os }}.zip
         path: finalbuild-${{ matrix.os }}
-    
-    # - name: Download artifact
-    #   uses: actions/download-artifact@v2
-    #   if: startsWith(github.ref, 'refs/tags/')
-    #   with:
-    #     name: foggycam-${{ matrix.os }}.zip
-    #     path: /
 
-    - name: ZIP Release
+    - name: ZIP Release (Ubuntu)
+      runs-on: ubuntu-latest
       if: startsWith(github.ref, 'refs/tags/')
       run: apt-get install zip | zip foggycam-${{ matrix.os }}.zip finalbuild-${{ matrix.os }}
+
+    - name: ZIP Release (macOS)
+      runs-on: macos-latest
+      if: startsWith(github.ref, 'refs/tags/')
+      run: zip foggycam-${{ matrix.os }}.zip finalbuild-${{ matrix.os }}
+
+    - name: ZIP Release (Windows)
+      runs-on: windows-latest
+      if: startsWith(github.ref, 'refs/tags/')
+      run: Compress-Archive -Path finalbuild-${{ matrix.os }} -DestinationPath foggycam-${{ matrix.os }}.zip
 
     - name: Release
       uses: softprops/action-gh-release@v1
