@@ -12,7 +12,7 @@ namespace VaccinationFinder
         private readonly string ContextKey = "aura.context";
         private readonly string TokenKey = "aura.token";
 
-        private readonly string? VaccinationUrl = "https://www.getvaccinated.gov.bc.ca/s/sfsites/aura?r=11&aura.ApexAction.execute=1";
+        private readonly string VaccinationUrl = "https://www.getvaccinated.gov.bc.ca/s/sfsites/aura?r=11&aura.ApexAction.execute=1";
         private readonly string FacilityMessage = "{{\"actions\":[{{\"id\":\"147;a\",\"descriptor\":\"aura://ApexActionController/ACTION$execute\",\"callingDescriptor\":\"UNKNOWN\",\"params\":{{\"namespace\":\"\",\"classname\":\"BCH_SchedulerController\",\"method\":\"getFacilities\",\"params\":{{\"territory\":\"{0}\",\"priorityCode\":\"\"}},\"cacheable\":true,\"isContinuation\":false}}}}]}}";
         private readonly string SpecificFacilityMessage = "{{\"actions\":[{{\"id\":\"149;a\",\"descriptor\":\"aura://ApexActionController/ACTION$execute\",\"callingDescriptor\":\"UNKNOWN\",\"params\":{{\"namespace\":\"\",\"classname\":\"BCH_SchedulerController\",\"method\":\"getAppointmentDays\",\"params\":{{\"facility\":\"{0}\",\"appointmentType\":\"COVID-19 Vaccination\"}},\"cacheable\":true,\"isContinuation\":false}}}}]}}";
         private readonly string AppointmentBlockMessage = "{{\"actions\":[{{\"id\":\"156;a\",\"descriptor\":\"aura://ApexActionController/ACTION$execute\",\"callingDescriptor\":\"UNKNOWN\",\"params\":{{\"namespace\":\"\",\"classname\":\"BCH_SchedulerController\",\"method\":\"getAppointmentBlocks\",\"params\":{{\"appointmentDay\":\"{0}\", \"facility\":\"{1}\",\"appointmentType\":\"COVID-19 Vaccination\"}},\"cacheable\":true,\"isContinuation\":false}}}}]}}";
