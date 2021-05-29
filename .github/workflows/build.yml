@@ -2,7 +2,7 @@ name: "Build"
 
 on:
   pull_request:
-    branches: [master, experimental]
+    branches: [main, experimental]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
@@ -14,7 +14,7 @@ on:
       - '**/*.gitignore'
       - '**/*.gitattributes'
   workflow_dispatch:
-    branches: [master, experimental]
+    branches: [main, experimental]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
