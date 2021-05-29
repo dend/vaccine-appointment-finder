@@ -30,6 +30,14 @@ To run the application, you will need to create a `tokens.json` file in the proj
 
 You can get both values when you navigate to `https://www.getvaccinated.gov.bc.ca/s/booking`, and looking at the traffic through the network inspector in your favorite web browser. Look for `aura.context` form data in a POST request.
 
+To run the application, you can use:
+
+```bash
+vacfind.exe --city Vancouver
+```
+
+The `--city` parameter should contain a city in the province of British Columbia, and is required.
+
 ## FAQ
 
 ### Does this tool allow me to pick which vaccine I will get?
