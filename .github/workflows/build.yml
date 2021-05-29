@@ -8,7 +8,7 @@ on:
       - '**/*.gitignore'
       - '**/*.gitattributes'
   push:
-    branches: [master, experimental]
+    branches: [main, experimental]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
