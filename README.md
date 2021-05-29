@@ -16,6 +16,14 @@ This tool allows finding all available vaccine appointments in a specified city 
 <div align="center">
 	<img alt="Demo of the Vaccine Appointment Finder" src="images/vac-demo.gif" width="800">
 </div>
+## Building
+
+Prerequisite: `dotnet` should be installed on your machine (see https://aka.ms/net for details on how to aquire and install the tools).
+
+1. Open a cmd shell or PowerShell instance
+2. Navigate to where you cloned this repo
+3. Build the binaries. `> dotnet build -c Release -o bin`
+4. Copy your `tokens.json` file to the bin folder: `> cp tokens.json bin/`
 
 ## Running
 
@@ -28,7 +36,7 @@ To run the application, you will need to create a `tokens.json` file in the proj
 }
 ```
 
-You can get both values when you navigate to `https://www.getvaccinated.gov.bc.ca/s/booking`, and looking at the traffic through the network inspector in your favorite web browser. Look for `aura.context` form data in a POST request.
+You can get both values when you navigate to `https://www.getvaccinated.gov.bc.ca/s/booking`, and looking at the traffic through the network inspector in your favorite web browser ("F12 tools" in Firefox, Chrome, Edge). Search headers for `aura.context` form data in a POST request.
 
 To run the application, you can use:
 
