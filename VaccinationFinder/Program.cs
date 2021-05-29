@@ -42,7 +42,7 @@ namespace VaccinationFinder
             }
             else
             {
-                Console.WriteLine("[ERROR] No city was specified.");
+                Console.WriteLine("\u001b[30m[ERROR]\u001b[0m No city was specified.");
             }
         }
 
