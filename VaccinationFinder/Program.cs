@@ -61,7 +61,7 @@ namespace VaccinationFinder
                 {
                     foreach (var facility in facilities.Entities.First().Facilities.FacilityCollection)
                     {
-                        Console.WriteLine($"[{facility.Name}] ({facility.Address})");
+                        Console.WriteLine($"{facility.Name} ({facility.Address})");
 
                         var facilityAppointments = await helper.GetFacilityDays(facility.Id, token);
                         if (facilityAppointments.Entities.First().Appointments.VaccinationFacilityAppointments != null &&
