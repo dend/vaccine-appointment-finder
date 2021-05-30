@@ -9,6 +9,8 @@
 	<br>
 </div>
 
+![Build badge for vaccine appointment finder](https://github.com/dend/vaccine-appointment-finder/actions/workflows/build.yml/badge.svg)
+
 To find a vaccine appointment in British Columbia, and especially if you have one booked - requires canceling the existing one. Not the most optimal approach if you are worried about losing your spot in line.
 
 This tool allows finding all available vaccine appointments in a specified city in BC without canceling the existing time slot. I wrote about this in detail [in my blog post](https://den.dev/blog/vaccine/).
@@ -19,12 +21,13 @@ This tool allows finding all available vaccine appointments in a specified city 
 
 ## Building
 
-Prerequisite: `dotnet` should be installed on your machine (see https://aka.ms/net for details on how to aquire and install the tools).
+Make sure that you install the [.NET SDK](https://dotnet.microsoft.com/download) on your computer. You **do not** need to have Visual Studio installed.
 
-1. Open a cmd shell or PowerShell instance
-2. Navigate to where you cloned this repo
-3. Build the binaries. `> dotnet build -c Release -o bin`
-4. Copy your `tokens.json` file to the bin folder: `> cp tokens.json bin/`
+1. Clone or download the contents of this repository.
+1. Open the terminal.
+1. Navigate to the folder where you cloned the repository.
+1. Build the binaries: `dotnet build -c Release -o bin`.
+1. Copy your `tokens.json` file to the `bin` folder: `cp tokens.json bin/`.
 
 ## Running
 
@@ -37,7 +40,7 @@ To run the application, you will need to create a `tokens.json` file in the proj
 }
 ```
 
-You can get both values when you navigate to `https://www.getvaccinated.gov.bc.ca/s/booking`, and looking at the traffic through the network inspector in your favorite web browser ("F12 tools" in Firefox, Chrome, Edge). Search headers for `aura.context` form data in a POST request.
+You can get both values when you navigate to `https://www.getvaccinated.gov.bc.ca/s/booking`, and looking at the traffic through the network inspector in your favorite web browser (Developer Tools in [Firefox](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools), [Chrome](https://developer.chrome.com/docs/devtools/), or [Edge](https://docs.microsoft.com/microsoft-edge/devtools-guide-chromium/)). Search headers for `aura.context` form data in a POST request.
 
 To run the application, you can use:
 
