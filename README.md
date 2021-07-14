@@ -11,8 +11,6 @@
 
 ![Build badge for vaccine appointment finder](https://github.com/dend/vaccine-appointment-finder/actions/workflows/build.yml/badge.svg)
 
-To find a vaccine appointment in British Columbia, and especially if you have one booked - requires canceling the existing one. Not the most optimal approach if you are worried about losing your spot in line.
-
 This tool allows finding all available vaccine appointments in a specified city in BC without canceling the existing time slot. I wrote about this in detail [in my blog post](https://den.dev/blog/vaccine/).
 
 <div align="center">
