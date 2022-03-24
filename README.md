@@ -9,7 +9,7 @@
 	<br>
 </div>
 
-![Build badge for vaccine appointment finder](https://github.com/dend/vaccine-appointment-finder/actions/workflows/build.yml/badge.svg)
+![Build badge for vaccine appointment finder](https://github.com/dend/vaccine-appointment-finder/actions/workflows/build.yml/badge.svg) [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://den.dev/ukraine)
 
 This tool allows finding all available vaccine appointments in a specified city in BC without canceling the existing time slot. I wrote about this in detail [in my blog post](https://den.dev/blog/vaccine/).
 
